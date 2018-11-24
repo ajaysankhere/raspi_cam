@@ -24,13 +24,13 @@ basic_auth = BasicAuth(app)
 last_epoch = 0
 
 def check_for_objects():
-	global last_epoch
-	while True:
-		try:
-			frame, found_obj = video_camera.get_object(face_classifier,ub_classifier,fb_classifier)			
-			if found_obj and (time.time() - last_epoch) > email_update_interval:
-				t0 = time.time()
-				fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    global last_epoch
+    while True:
+        try:
+            frame, found_obj = video_camera.get_object(face_classifier,ub_classifier,fb_classifier)         
+            if found_obj and (time.time() - last_epoch) > email_update_interval:
+                t0 = time.time()
+                fourcc = cv2.VideoWriter_fourcc(*'XVID')
                 out = cv2.VideoWriter('output.avi',fourcc, 20.0, (1280,720))
                 while True:
                     imgs = video_camera.get_frame_for_video()
@@ -41,12 +41,12 @@ def check_for_objects():
                         driveupload.upload_to_drive()
                         break
                 del out
-				last_epoch = time.time()
-				print("Sending email...")
-				sendEmail(frame)
-				print("done!")
-		except:
-			print("Error sending email: ", sys.exc_info()[0])
+                last_epoch = time.time()
+                print("Sending email...")
+                sendEmail(frame)
+                print("done!")
+        except:
+            print("Error sending email: ", sys.exc_info()[0])
 
 @app.route('/')
 @basic_auth.required

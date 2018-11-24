@@ -34,7 +34,7 @@ class VideoCamera(object):
 
         full_body = fb_classifier.detectMultiScale(
             gray,
-            scaleFactor=1.4,
+            scaleFactor=1.3,
             minNeighbors=5,
             minSize=(30, 30),
             flags=cv2.CASCADE_SCALE_IMAGE
@@ -42,7 +42,7 @@ class VideoCamera(object):
 
         upper_body = ub_classifier.detectMultiScale(
             gray,
-            scaleFactor=1.4,
+            scaleFactor=1.3,
             minNeighbors=5,
             minSize=(30, 30),
             flags=cv2.CASCADE_SCALE_IMAGE
@@ -50,7 +50,7 @@ class VideoCamera(object):
 
         faces = face_classifier.detectMultiScale(
             gray,
-            scaleFactor=1.4,
+            scaleFactor=1.3,
             minNeighbors=5,
             minSize=(30, 30),
             flags=cv2.CASCADE_SCALE_IMAGE
